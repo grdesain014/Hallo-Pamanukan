@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hallo Pamanukan</title>
+<style>
+:root{--p:#7c3aed;--p2:#6d28d9;--pl:#ede9fe;--bg:#f5f3ff;--card:#fff;--tx:#1f1535;--mu:#6b6485;--bd:#e4def5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--pl:#2e2150;--bg:#150f26;--card:#1e1636;--tx:#f1ecff;--mu:#a79fc4;--bd:#34284f;color-scheme:dark}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,input,textarea{font:inherit;color:inherit}
+.btn{background:var(--p);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer}.btn:hover{background:var(--p2)}
+.btn.g{background:var(--pl);color:var(--p)}.btn.s{padding:6px 12px;font-size:13px}
+input,textarea{width:100%;border:1px solid var(--bd);background:var(--card);border-radius:8px;padding:10px 12px;outline:none}
+input:focus,textarea:focus{border-color:var(--p)}textarea{resize:vertical}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:14px}
+.av{width:40px;height:40px;border-radius:50%;background:var(--p);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:700;overflow:hidden;flex:none;object-fit:cover}
+.av.l{width:130px;height:130px;font-size:48px;border:4px solid var(--card)}.av.sm{width:32px;height:32px;font-size:13px}
+.row{display:flex;gap:10px;align-items:center}.mu{color:var(--mu);font-size:13px}.link{cursor:pointer;font-weight:600}.link:hover{text-decoration:underline}
+#auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;gap:48px;flex-wrap:wrap;background:linear-gradient(135deg,var(--pl),var(--bg))}
+.hero{max-width:400px}.hero h1{font-size:44px;line-height:1.1;color:var(--p);margin:0 0 10px}.hero p{font-size:18px;color:var(--mu);margin:0}
+.box{width:100%;max-width:380px}.box form>*{margin-bottom:10px}
+.tabs{display:flex;margin-bottom:14px;border-bottom:2px solid var(--bd)}.tabs b{flex:1;text-align:center;padding:10px;cursor:pointer;color:var(--mu)}.tabs b.on{color:var(--p);border-bottom:3px solid var(--p);margin-bottom:-2px}
+.err{color:#dc2626;font-size:13px;min-height:18px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:12px;padding:8px 16px}
+.logo{font-weight:800;font-size:20px;color:var(--p);white-space:nowrap;cursor:pointer}
+.nl{display:flex;gap:4px;margin:0 auto}.nl button{background:none;border:0;padding:8px 18px;border-radius:8px;cursor:pointer;color:var(--mu);font-weight:600}.nl button.on{color:var(--p);background:var(--pl)}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr) 260px;gap:18px;max-width:1100px;margin:16px auto;padding:0 12px}
+.side{position:sticky;top:70px;align-self:start}.side .it{display:flex;gap:10px;align-items:center;padding:9px;border-radius:8px;cursor:pointer;font-weight:600}.side .it:hover,.side .it.on{background:var(--pl)}
+.pst .h{display:flex;gap:10px;align-items:center;margin-bottom:8px}.pst img.pi{width:100%;border-radius:8px;margin-top:8px;max-height:480px;object-fit:cover}
+.pst h3{margin:4px 0}.tag{background:var(--pl);color:var(--p);font-size:12px;font-weight:700;border-radius:20px;padding:2px 9px}
+.act{display:flex;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);margin:10px 0;padding:2px 0}.act button{flex:1;background:none;border:0;padding:8px;cursor:pointer;border-radius:6px;color:var(--mu);font-weight:600}.act button:hover{background:var(--pl)}.act .on{color:var(--p)}
+.cm{display:flex;gap:8px;margin-bottom:8px}.cm .b{background:var(--pl);border-radius:14px;padding:6px 12px}
+.cover{height:200px;background:linear-gradient(120deg,#a78bfa,#7c3aed 60%,#4c1d95)}
+.ph{padding:0 20px 16px;margin-top:-50px}.info p{margin:6px 0}
+.hide{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:none}.hero h1{font-size:34px}}
+@media(max-width:520px){.logo{font-size:16px}.nl button{padding:8px 10px}}
+</style></head><body>
+<div id="root"></div>
+<script>
+var KEY="hp_v1",S={users:[],posts:[],me:null};
+try{var d=JSON.parse(localStorage.getItem(KEY));if(d)S=d}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){alert("Penyimpanan penuh. Gunakan foto yang lebih kecil.")}}
+if(!S.users.length){S.users.push({id:"u0",name:"Admin Pamanukan",contact:"admin@hallopamanukan.id",pass:"-",avatar:"",bio:"Selamat datang di Hallo Pamanukan!",city:"Pamanukan, Subang",work:"",edu:""});
+S.posts.push({id:"p1",uid:"u0",type:"post",title:"",text:"Selamat datang di Hallo Pamanukan 💜 Tempat warga Pamanukan berbagi cerita, info, dan saling sapa. Silakan buat postingan pertamamu!",img:"",t:Date.now()-36e5,likes:[],cm:[]},
+{id:"p2",uid:"u0",type:"diskusi",title:"Tempat makan favorit di Pamanukan?",text:"Yuk bagikan rekomendasi tempat makan enak dan murah di sekitar Pamanukan.",img:"",t:Date.now()-18e5,likes:[],cm:[]});save()}
+var view="beranda",profUid=null,mode="daftar",err="",editing=false,pendImg="",R=document.getElementById("root");
+var $=function(s){return document.querySelector(s)};
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function U(id){return S.users.find(function(u){return u.id==id})||{name:"Pengguna",avatar:""}}
+function me(){return U(S.me)}
+function av(u,c){return u.avatar?'<img class="av '+(c||"")+'" src="'+u.avatar+'" alt="">':'<span class="av '+(c||"")+'">'+esc((u.name||"?").trim().charAt(0).toUpperCase())+'</span>'}
+function ago(t){var s=(Date.now()-t)/1000;if(s<60)return"baru saja";if(s<3600)return Math.floor(s/60)+" menit lalu";if(s<86400)return Math.floor(s/3600)+" jam lalu";return new Date(t).toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})}
+function shrink(file,max,cb){var r=new FileReader();r.onload=function(){var i=new Image();i.onload=function(){var k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=i.width*k;c.height=i.height*k;c.getContext("2d").drawImage(i,0,0,c.width,c.height);cb(c.toDataURL("image/jpeg",.75))};i.src=r.result};r.readAsDataURL(file)}
+function render(){S.me?app():auth()}
+function auth(){
+R.innerHTML='<div id="auth"><div class="hero"><h1>Hallo Pamanukan</h1><p>Terhubung dengan warga, berbagi cerita, dan berdiskusi bersama di Pamanukan.</p></div><div class="card box"><div class="tabs"><b class="'+(mode=="daftar"?"on":"")+'" onclick="mode=\'daftar\';err=\'\';render()">Daftar</b><b class="'+(mode=="masuk"?"on":"")+'" onclick="mode=\'masuk\';err=\'\';render()">Masuk</b></div><form onsubmit="return doAuth(event)">'+(mode=="daftar"?'<input id="an" placeholder="Nama lengkap" required>':'')+'<input id="ac" placeholder="Email atau nomor HP" required><input id="ap" type="password" placeholder="Kata sandi (min. 6 karakter)" required minlength="6"><div class="err">'+err+'</div><button class="btn" style="width:100%">'+(mode=="daftar"?"Daftar":"Masuk")+'</button></form></div></div>'}
+function norm(c){c=c.trim().toLowerCase();if(/^[+0-9][0-9\s-]{7,}$/.test(c)){c=c.replace(/[\s-]/g,"");if(c[0]=="0")c="+62"+c.slice(1);else if(c.slice(0,2)=="62")c="+"+c}return c}
+function doAuth(e){e.preventDefault();var c=norm($("#ac").value),p=$("#ap").value;
+if(!/^\S+@\S+\.\S+$/.test(c)&&!/^\+[0-9]{9,15}$/.test(c)){err="Masukkan email atau nomor HP yang valid.";render();return false}
+var u=S.users.find(function(x){return x.contact==c});
+if(mode=="daftar"){if(u){err="Akun sudah terdaftar. Silakan masuk.";render();return false}
+u={id:"u"+Date.now(),name:$("#an").value.trim(),contact:c,pass:p,avatar:"",bio:"",city:"",work:"",edu:""};S.users.push(u)}
+else if(!u||u.pass!=p){err="Email/nomor HP atau kata sandi salah.";render();return false}
+S.me=u.id;err="";save();view="beranda";render();return false}
+function out(){S.me=null;save();render()}
+function app(){var m=me();
+R.innerHTML='<nav><span class="logo" onclick="go(\'beranda\')">💜 Hallo Pamanukan</span><div class="nl"><button class="'+(view=="beranda"?"on":"")+'" onclick="go(\'beranda\')">Beranda</button><button class="'+(view=="diskusi"?"on":"")+'" onclick="go(\'diskusi\')">Diskusi</button><button class="'+(view=="profil"&&profUid==S.me?"on":"")+'" onclick="go(\'profil\')">Profil</button></div><span class="row" style="cursor:pointer" onclick="go(\'profil\')">'+av(m,"sm")+'</span><button class="btn g s" onclick="out()">Keluar</button></nav>'+
+'<div class="layout"><aside class="side"><div class="it" onclick="go(\'profil\')">'+av(m,"sm")+esc(m.name)+'</div><div class="it '+(view=="beranda"?"on":"")+'" onclick="go(\'beranda\')">🏠 Beranda</div><div class="it '+(view=="diskusi"?"on":"")+'" onclick="go(\'diskusi\')">💬 Diskusi</div></aside><main>'+(view=="profil"?profile():feed())+'</main><aside class="side"><div class="card"><b>Warga terbaru</b>'+S.users.slice(-5).reverse().map(function(u){return'<div class="row link" style="margin-top:10px" onclick="openProf(\''+u.id+'\')">'+av(u,"sm")+esc(u.name)+'</div>'}).join("")+'</div><p class="mu">Hallo Pamanukan © 2026</p></aside></div>'}
+function go(v){view=v;editing=false;if(v=="profil")profUid=S.me;render();scrollTo(0,0)}
+function openProf(id){view="profil";profUid=id;editing=false;render();scrollTo(0,0)}
+function composer(){var d=view=="diskusi",m=me();
+return'<div class="card"><div class="row" style="align-items:flex-start">'+av(m)+'<div style="flex:1">'+(d?'<input id="pt" placeholder="Judul diskusi" style="margin-bottom:8px">':'')+'<textarea id="px" rows="3" placeholder="'+(d?"Apa yang ingin kamu diskusikan?":"Apa yang kamu pikirkan, "+esc(m.name.split(" ")[0])+"?")+'"></textarea><img id="pv" class="hide" style="max-width:100%;border-radius:8px;margin-top:8px"><div class="row" style="margin-top:8px;justify-content:space-between"><label class="link mu" style="cursor:pointer">🖼️ Foto<input type="file" accept="image/*" class="hide" onchange="pickImg(this)"></label><button class="btn s" onclick="doPost()">'+(d?"Mulai diskusi":"Posting")+'</button></div></div></div></div>'}
+function pickImg(i){if(!i.files[0])return;shrink(i.files[0],800,function(u){pendImg=u;$("#pv").src=u;$("#pv").classList.remove("hide")})}
+function doPost(){var t=$("#px").value.trim(),d=view=="diskusi",ti=d?$("#pt").value.trim():"";if(!t||(d&&!ti)){alert(d?"Isi judul dan isi diskusi.":"Tulis sesuatu dulu.");return}
+S.posts.unshift({id:"p"+Date.now(),uid:S.me,type:d?"diskusi":"post",title:ti,text:t,img:pendImg,t:Date.now(),likes:[],cm:[]});pendImg="";save();render()}
+function feed(){var d=view=="diskusi",l=S.posts.filter(function(p){return d?p.type=="diskusi":true});
+return composer()+(l.length?l.map(post).join(""):'<div class="card mu">Belum ada '+(d?"diskusi":"postingan")+'. Jadilah yang pertama!</div>')}
+function post(p){var u=U(p.uid),liked=p.likes.indexOf(S.me)>-1;
+return'<div class="card pst"><div class="h">'+av(u)+'<div><span class="link" onclick="openProf(\''+p.uid+'\')">'+esc(u.name)+'</span> '+(p.type=="diskusi"?'<span class="tag">Diskusi</span>':'')+'<div class="mu">'+ago(p.t)+'</div></div>'+(p.uid==S.me?'<button class="btn g s" style="margin-left:auto" onclick="delPost(\''+p.id+'\')">Hapus</button>':'')+'</div>'+(p.title?'<h3>'+esc(p.title)+'</h3>':'')+'<div style="white-space:pre-wrap">'+esc(p.text)+'</div>'+(p.img?'<img class="pi" src="'+p.img+'" alt="">':'')+
+'<div class="act"><button class="'+(liked?"on":"")+'" onclick="like(\''+p.id+'\')">👍 Suka ('+p.likes.length+')</button><button onclick="document.getElementById(\'c'+p.id+'\').focus()">💬 '+(p.type=="diskusi"?"Balas":"Komentar")+' ('+p.cm.length+')</button></div>'+
+p.cm.map(function(c){var cu=U(c.uid);return'<div class="cm">'+av(cu,"sm")+'<div><div class="b"><b class="link" onclick="openProf(\''+c.uid+'\')">'+esc(cu.name)+'</b><div style="white-space:pre-wrap">'+esc(c.text)+'</div></div><span class="mu">'+ago(c.t)+'</span></div></div>'}).join("")+
+'<div class="cm">'+av(me(),"sm")+'<input id="c'+p.id+'" placeholder="Tulis '+(p.type=="diskusi"?"balasan":"komentar")+'..." onkeydown="if(event.key==\'Enter\')addCm(\''+p.id+'\')"></div></div>'}
+function P(id){return S.posts.find(function(p){return p.id==id})}
+function like(id){var p=P(id),i=p.likes.indexOf(S.me);i>-1?p.likes.splice(i,1):p.likes.push(S.me);save();render()}
+function addCm(id){var v=document.getElementById("c"+id).value.trim();if(!v)return;P(id).cm.push({uid:S.me,text:v,t:Date.now()});save();render()}
+function delPost(id){if(confirm("Hapus postingan ini?")){S.posts=S.posts.filter(function(p){return p.id!=id});save();render()}}
+function profile(){var u=U(profUid),own=profUid==S.me,l=S.posts.filter(function(p){return p.uid==profUid});
+var info=[["📍",u.city],["💼",u.work],["🎓",u.edu]].filter(function(x){return x[1]}).map(function(x){return'<p>'+x[0]+' '+esc(x[1])+'</p>'}).join("");
+var h='<div class="card" style="padding:0;overflow:hidden"><div class="cover"></div><div class="ph"><div class="row" style="align-items:flex-end;flex-wrap:wrap">'+av(u,"l")+'<div style="flex:1;min-width:160px"><h2 style="margin:0">'+esc(u.name)+'</h2><div class="mu">'+l.length+' postingan</div></div>'+(own?'<div class="row"><label class="btn g s" style="cursor:pointer">📷 Ganti foto<input type="file" accept="image/*" class="hide" onchange="setAv(this)"></label><button class="btn s" onclick="editing=!editing;render()">'+(editing?"Batal":"Ubah profil")+'</button></div>':'')+'</div>';
+if(own&&editing)h+='<div style="margin-top:14px">'+[["en","Nama","name"],["eb","Bio","bio"],["ec","Kota","city"],["ew","Pekerjaan","work"],["es","Pendidikan","edu"]].map(function(f){return'<label class="mu">'+f[1]+'</label><input id="'+f[0]+'" value="'+esc(u[f[2]]||"")+'" style="margin:3px 0 10px">'}).join("")+'<button class="btn" onclick="saveProf()">Simpan</button></div>';
+else h+='<div class="info" style="margin-top:12px">'+(u.bio?'<p>'+esc(u.bio)+'</p>':own?'<p class="mu">Belum ada bio. Klik “Ubah profil” untuk menambahkan.</p>':'')+info+(own?'<p class="mu">✉️ '+esc(u.contact)+'</p>':'')+'</div>';
+return h+'</div></div>'+(l.length?l.map(post).join(""):'<div class="card mu">Belum ada postingan.</div>')}
+function setAv(i){if(!i.files[0])return;shrink(i.files[0],256,function(d){me().avatar=d;save();render()})}
+function saveProf(){var m=me(),n=$("#en").value.trim();if(!n){alert("Nama tidak boleh kosong.");return}m.name=n;m.bio=$("#eb").value.trim();m.city=$("#ec").value.trim();m.work=$("#ew").value.trim();m.edu=$("#es").value.trim();editing=false;save();render()}
+render();
+</script></body></html>
